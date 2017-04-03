@@ -1,6 +1,6 @@
 {
   "name": "hubot-command-log",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Save and retrieve all commands sent to hubot.",
   "main": "src",
   "repository": "http://github.com/gmq/hubot-command-log",
