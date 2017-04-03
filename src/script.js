@@ -2,7 +2,8 @@
 //   A small script to save and retrieve all commands sent to hubot.
 //
 // Commands:
-// hubot command-log YYYY/MM/DD - Get all commands given that date.
+//   hubot command-log 2016/12/31 - Get all commands given to hubot during that day.
+//   hubot command-log 2016/12/01-2016/12/31 - Get all commands given to hubot during that range of dates
 //
 // Author:
 //   @gmq
