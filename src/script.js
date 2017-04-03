@@ -1,6 +1,9 @@
 // Description:
 //   A small script to save and retrieve all commands sent to hubot.
 //
+// Configuration:
+// HUBOT_COMMAND_LOG_OUTPUT_ROOM - Room where the log will be printed.
+//
 // Commands:
 //   hubot command-log 2016/12/31 - Get all commands given to hubot during that day.
 //   hubot command-log 2016/12/01-2016/12/31 - Get all commands given to hubot during that range of dates
@@ -8,7 +11,11 @@
 // Author:
 //   @gmq
 
+
+const process = require('process')
 const moment = require('moment')
+
+let outputRoom = process.env.HUBOT_COMMAND_LOG_OUTPUT_ROOM
 
 module.exports = (robot) => {
   robot.listenerMiddleware((context, next, done) => {
@@ -33,7 +40,12 @@ module.exports = (robot) => {
     const logs = robot.brain.get('hubot-command-log') || []
     const foundLogs = getLogs(rangeStart, rangeEnd, logs)
     if (foundLogs.length > 0) {
-      res.send(parseLogs(foundLogs))
+      const parsedLogs = parseLogs(foundLogs, robot)
+      if (outputRoom) {
+        robot.messageRoom(outputRoom, parsedLogs)
+      } else {
+        res.send(parsedLogs)
+      }
     } else {
       res.send(`No logs found for specified range ${rangeStart.format('YYYY/MM/DD hh:mm')} - ${rangeEnd.format('YYYY/MM/DD hh:mm')}`)
     }
@@ -46,9 +58,11 @@ function getLogs (rangeStart, rangeEnd, logs) {
   })
 }
 
-function parseLogs (logs) {
+function parseLogs (logs, robot = {}) {
   return logs.map(log => {
     const date = moment(log.date)
-    return `${log.user.name} (${log.room}): ${log.text} - ${date.format('YYYY/MM/DD hh:mm')}`
+    const room = (robot.adapterName === 'slack') ? `#${robot.adapter.client.rtm.dataStore.getChannelGroupOrDMById(log.room).name}` : log.room
+
+    return `${log.user.name} (${room}): ${log.text} - ${date.format('YYYY/MM/DD hh:mm')}`
   }).join('\n')
 }
