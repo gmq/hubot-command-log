@@ -48,7 +48,7 @@ test.cb('it should find two commands in the range provided', t => {
   setTimeout(() => {
     t.deepEqual(t.context.room.messages, [
       ['user', 'hubot command-log 2016/01/01 10:00 - 2016/01/01 13:00'],
-      ['hubot', 'Fred: hubot help - 2016/01/01 10:00\nFred: hubot spam everyone - 2016/01/01 12:00']
+      ['hubot', 'Fred (#random): hubot help - 2016/01/01 10:00\nFred (#random): hubot spam everyone - 2016/01/01 12:00']
     ])
 
     t.end()
@@ -88,7 +88,7 @@ test.cb('it should be able to parse dates without an hour', t => {
   setTimeout(() => {
     t.deepEqual(t.context.room.messages, [
       ['user', 'hubot command-log 2016/01/01'],
-      ['hubot', 'Fred: hubot help - 2016/01/01 10:00\nFred: hubot spam everyone - 2016/01/01 12:00']
+      ['hubot', 'Fred (#random): hubot help - 2016/01/01 10:00\nFred (#random): hubot spam everyone - 2016/01/01 12:00']
     ])
 
     t.end()

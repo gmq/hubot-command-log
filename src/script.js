@@ -48,6 +48,6 @@ function getLogs (rangeStart, rangeEnd, logs) {
 function parseLogs (logs) {
   return logs.map(log => {
     const date = moment(log.date)
-    return `${log.user.name}: ${log.text} - ${date.format('YYYY/MM/DD hh:mm')}`
+    return `${log.user.name} (${log.room}): ${log.text} - ${date.format('YYYY/MM/DD hh:mm')}`
   }).join('\n')
 }
