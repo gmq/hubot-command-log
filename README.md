@@ -1,4 +1,4 @@
-# hubot-cne
+# hubot-command-log
 
 [![Build Status](https://img.shields.io/travis/gmq/hubot-command-log.svg?style=flat-square)](https://travis-ci.org/gmq/hubot-command-log)
 
