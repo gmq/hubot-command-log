@@ -1,5 +1,5 @@
 // Description:
-//   A small script to save and retrieve all commands sent to hubot.
+//   Save and retrieve all commands sent to hubot.
 //
 // Configuration:
 // HUBOT_COMMAND_LOG_OUTPUT_ROOM - Room where the log will be printed.
@@ -10,7 +10,6 @@
 //
 // Author:
 //   @gmq
-
 
 const process = require('process')
 const moment = require('moment')
