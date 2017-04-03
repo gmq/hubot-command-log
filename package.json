@@ -1,0 +1,21 @@
+{
+  "name": "hubot-command-logs",
+  "version": "1.0.0",
+  "description": "A small script to save and retrieve all commands sent to hubot.",
+  "main": "src",
+  "repository": "http://github.com/gmq/hubot-command-logs",
+  "author": "Guillermo Moreno",
+  "license": "MIT",
+  "scripts": {
+    "test": "standard && ava"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "coffee-script": "^1.12.4",
+    "hubot-test-helper": "^1.5.1",
+    "standard": "^9.0.2"
+  },
+  "dependencies": {
+    "moment": "^2.18.1"
+  }
+}
