@@ -20,7 +20,7 @@ module.exports = (robot) => {
   robot.listenerMiddleware((context, next, done) => {
     const logs = robot.brain.get('hubot-command-log') || []
     const newLog = Object.assign({}, context.response.message, { date: new Date() })
-    delete newLog.rawMessage;
+    delete newLog.rawMessage
     logs.push(newLog)
     robot.brain.set('hubot-command-log', logs)
     robot.brain.save()
