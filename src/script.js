@@ -69,6 +69,7 @@ function parseLogs (logs, robot = {}) {
 function formatMessage (message) {
   return {
     user: {
+      id: message.user.id,
       name: message.user.name
     },
     room: message.room,
