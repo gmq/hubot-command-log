@@ -19,8 +19,7 @@ let outputRoom = process.env.HUBOT_COMMAND_LOG_OUTPUT_ROOM
 module.exports = (robot) => {
   robot.listenerMiddleware((context, next, done) => {
     const logs = robot.brain.get('hubot-command-log') || []
-    const newLog = Object.assign({}, context.response.message, { date: new Date() })
-    delete newLog.rawMessage
+    const newLog = formatMessage(context.response.message)
     logs.push(newLog)
     robot.brain.set('hubot-command-log', logs)
     robot.brain.save()
@@ -65,4 +64,15 @@ function parseLogs (logs, robot = {}) {
 
     return `${log.user.name} (${room}): ${log.text} - ${date.format('YYYY/MM/DD hh:mm')}`
   }).join('\n')
+}
+
+function formatMessage (message) {
+  return {
+    user: {
+      name: message.user.name
+    },
+    room: message.room,
+    text: message.text,
+    date: new Date()
+  }
 }
